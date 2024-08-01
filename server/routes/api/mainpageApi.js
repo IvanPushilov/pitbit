@@ -6,7 +6,7 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
 	destination: function (req, file, cb) {
-		cb(null, 'public/filestorage/minerImg');
+		cb(null, 'public/filestorage');
 	},
 	filename: function (req, file, cb) {
 		cb(null, file.originalname);

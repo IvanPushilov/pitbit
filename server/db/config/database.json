@@ -1,8 +1,8 @@
 {
 
   "development": {
-    "username": "pitbit",
-    "password": "PitBitPass",
+    "username": "postgres",
+    "password": "postgres",
     "database": "pitpitcite",
     "host": "127.0.0.1",
     "dialect": "postgres"

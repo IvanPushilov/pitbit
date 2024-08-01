@@ -14,6 +14,9 @@ import { minersLoad } from '../features/Miners/minersSlice';
 import { brandsLoad } from '../features/Miners/brandsSlice';
 import { currenciesLoad } from '../features/Miners/currencySlice';
 import { algorithmsLoad } from '../features/Miners/algSlice';
+import { modellsLoad } from '../features/Miners/modellsSlice';
+import { hashratesLoad } from '../features/Miners/hashratesSlice';
+import { subbrandsLoad } from '../features/Miners/subSlice';
 // import { getToken } from '../helpers/app-helpers';
 
 
@@ -27,6 +30,10 @@ function App(): JSX.Element {
     dispatch(brandsLoad()).catch(console.log)
     dispatch(algorithmsLoad()).catch(console.log)
     dispatch(currenciesLoad()).catch(console.log)
+    dispatch(modellsLoad()).catch(console.log)
+    dispatch(hashratesLoad()).catch(console.log)
+    dispatch(subbrandsLoad()).catch(console.log)
+    
   }, [])
 
 

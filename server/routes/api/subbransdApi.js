@@ -1,32 +1,32 @@
 const express = require("express");
 const router = express.Router();
-const { Hashrate } = require("../../db/models");
+const { SubBrand } = require("../../db/models");
 
 
 router.get("/", async (req, res) => {
     try {
-        const hashrates = await Hashrate.findAll();
-        res.json({ hashrates });
+        const subbrands = await SubBrand.findAll();
+        res.json({ subbrands });
     } catch ({ message }) {
         res.status(500).json(message);
     }
 });
 
-router.post("/hashrates", async (req, res) => {
+router.post("/subbrands", async (req, res) => {
     try{
     const { name } = req.body;
-    const hashrate = await Hashrate.create({ name });
-    res.json({ hashrate });
+    const subbrand = await SubBrand.create({ name });
+    res.json({ subbrand });
     } catch ({ message }) {
         res.status(500).json(message);
     }
 });
 
-router.delete("/hashrates/:id", async (req, res) => {
+router.delete("/subbrands/:id", async (req, res) => {
     try {
         const { id } = req.params;
-        const hashrate = await Hashrate.destroy({ where: { id } });
-        res.json({ hashrate });
+        const subbrand = await SubBrand.destroy({ where: { id } });
+        res.json({ subbrand });
     } catch ({ message }) {
         res.json({ message: message });
     }

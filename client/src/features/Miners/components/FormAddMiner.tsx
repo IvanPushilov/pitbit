@@ -1,8 +1,9 @@
 /* eslint-disable react/function-component-definition */
 import React, { useEffect, useState } from 'react';
 import { minerAdd } from '../minersSlice';
-import { useAppDispatch } from '../../../store/store';
+import { RootState, useAppDispatch } from '../../../store/store';
 import '../styles/form.css';
+import { useSelector } from 'react-redux';
 
 const FormAddMiner = (): JSX.Element => {
   const [price, setPrice] = useState('');
@@ -15,83 +16,17 @@ const FormAddMiner = (): JSX.Element => {
   const [algorithms, setAlgorithms] = useState('');
   const [currencies, setCurrencies] = useState('');
   const [hashrates, setHashrates] = useState('');
-  const [brands, setBrands] = useState([]);
-  const [subbrands, setSubbrands] = useState([]);
-  const [models, setModels] = useState([]);
-  const [currenciesList, setCurrenciesList] = useState([]);
-  const [hashratesList, setHashratesList] = useState([]);
-  const [algorithmsList, setAlgorithmsList] = useState([]);
+
+  // const user = useSelector((store: RootState) => store.auth.user);
+  // const brands = useSelector((store: RootState) => store.brands.brands);
+  // const subbrands = useSelector((store: RootState) => store.subbrands.subbrands);
+  // const modells = useSelector((store: RootState) => store.modells.modells);
+  // const hashrates = useSelector((store: RootState) => store.hashrates.hashrates);
+  // const currencies = useSelector((store: RootState) => store.currencies.currencies);
+  // const algorithms = useSelector((store: RootState) => store.algorithms.algorithms);
+ 
 
   const dispatch = useAppDispatch();
-
-  const fetchBrandsModels = (): void => {
-    fetch('http://localhost:1337/api/brands?populate=*')
-        .then((response) => response.json())
-        .then((data) => {
-            const brandData = data.data.map((brand: any) => ({
-                id: brand.id,
-                name: brand.attributes.name,
-            }));
-            setBrands(brandData);
-
-            const modelData = data.data.flatMap((brand: any) =>
-                brand.attributes.models.data.map((model: any) => ({
-                    id: model.id,
-                    name: model.attributes.name,
-                })),                
-            );
-            setModels(modelData);
-        })
-        .catch(console.log);
-};
-  
-  const fetchSubBrands = (): void => {
-    fetch('http://localhost:1337/api/sub-brands?populate=*')
-      .then((response) => response.json())
-      .then((data) => {   
-        const subBrandNames = data.data.map((subBrand: any) => ({
-          id: subBrand.id, 
-          name: subBrand.attributes.name}));          
-        setSubbrands(subBrandNames);
-      })
-      .catch(console.log);
-  }
-  const fetchCurrencies = (): void => {
-    fetch('http://localhost:1337/api/currencies?populate=*')
-      .then((response) => response.json())
-      .then((data) => {
-        const currencyNames = data.data.map((currency: any) => ({
-          id: currency.id,
-          name: currency.attributes.name
-        }));
-        setCurrenciesList(currencyNames);
-      })
-      .catch(console.log);
-  };
-  const fetchHashrates = (): void => {
-    fetch('http://localhost:1337/api/hashrates?populate=*')
-      .then((response) => response.json())
-      .then((data) => {
-        const hashrateNames = data.data.map((hashrate: any) => ({
-          id: hashrate.id, 
-          name: hashrate.attributes.rate
-        }));        
-        setHashratesList(hashrateNames);
-      })
-      .catch(console.log);
-  };
-  const fetchAlgorithms = (): void => {
-    fetch('http://localhost:1337/api/algorithms?populate=*')
-      .then((response) => response.json())
-      .then((data) => {        
-        const algorithmNames = data.data.map((algorithm: any) => ({
-          id: algorithm.id,
-          name: algorithm.attributes.algorithm
-        }));
-        setAlgorithmsList(algorithmNames);
-      })
-      .catch(console.log);
-  };
 
   const minerAddFetch = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
@@ -125,13 +60,7 @@ const FormAddMiner = (): JSX.Element => {
     // window.scrollTo(0, 0);
   };
 
-  useEffect(() => {
-    fetchBrandsModels();
-    fetchCurrencies();
-    fetchHashrates();
-    fetchAlgorithms();
-    fetchSubBrands();
-  }, []); 
+
   useEffect(() => {
     if (brands.length > 0) {
       setBrand(brands[0]); // Установить первый бренд как выбранный
