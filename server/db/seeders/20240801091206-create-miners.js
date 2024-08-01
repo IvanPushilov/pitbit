@@ -12,7 +12,7 @@ module.exports = {
       brand_id: 1,
       modell_id: 1,
       subbrand_id: 1,
-      img:  'server/public/filestorage/asic.png',
+      img:  'https://medialeaks.ru/wp-content/uploads/2018/09/na-glavnuyu.jpg',
       expense: 4000,
       price: 300000,
       hashrate_id: 1,

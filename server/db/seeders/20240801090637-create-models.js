@@ -1,5 +1,7 @@
 'use strict';
 
+const brand = require('../models/brand');
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
@@ -7,12 +9,14 @@ module.exports = {
      {
        name: ' S19K Pro',
        subbrand_id: 1,
+       brand_id: 1,
        createdAt: new Date(),
        updatedAt: new Date(),
      },
      {
        name: 'M30S+',
        subbrand_id: 2,
+       brand_id: 2,
        createdAt: new Date(),
        updatedAt: new Date(),
      },

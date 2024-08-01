@@ -14,11 +14,26 @@ function MinerPage(): JSX.Element {
     store.miners.miners.find((miner) => miner.id === Number(minerId)),
   );
   const user = useSelector((store: RootState) => store.auth.user);
+  const brands = useSelector((store: RootState) => store.brands.brands);
+  const subbrands = useSelector((store: RootState) => store.subbrands.subbrands);
+  const modells = useSelector((store: RootState) => store.modells.modells);
+  const hashrates = useSelector((store: RootState) => store.hashrates.hashrates);
+  const currencies = useSelector((store: RootState) => store.currencies.currencies);
+  const algorithms = useSelector((store: RootState) => store.algorithms.algorithms);
+
+  
+
+
+  const currentBrand = brands.find((brand) => brand.id === selectedMiner?.brand_id);
+  const currentSubBrand = subbrands.find((subbrand) => subbrand.id === selectedMiner?.subbrand_id);
+  const currentModell = modells.find((modell) => modell.id === selectedMiner?.modell_id);
+  const currentHashrate = hashrates.find((hashrate) => hashrate.id === selectedMiner?.hashrate_id);
+  const currentCurrency = currencies.find((currency) => currency.id === selectedMiner?.currency_id);
+  const currentAlgorithm = algorithms.find((algorithm) => algorithm.id === selectedMiner?.algorithm_id);
 
   if (!selectedMiner) {
     return <div>Карточка не найдена</div>;
   }
-  console.log('store', selectedMiner);
  
 
   const minerDelete = (): void => {
@@ -36,16 +51,16 @@ function MinerPage(): JSX.Element {
       <div>
         <img
           className="img"
-          src={'http://localhost:1337' + selectedMiner.id}
+          src={selectedMiner.img}
           alt="img"
         />
       </div>
       <div className="minercard-info">
         <p className="info">
-          {selectedMiner.id}{' '}
-          {selectedMiner.id}
+          {currentSubBrand?.name}{' '}
+          {currentModell?.name}
         </p>
-        <pre className="info brand-name">{selectedMiner.id}</pre>
+        <pre className="info brand-name">{currentBrand?.name}</pre>
       </div>
 
       <h3 className="characteristics-title">Характеристики</h3>
@@ -53,11 +68,11 @@ function MinerPage(): JSX.Element {
         <tbody>
           <tr>
             <td className='pics' > <img className='imgs' src='../../../../public/algo.png'/>Алгоритм:</td>
-            <td>{selectedMiner.id}</td>
+            <td>{currentAlgorithm?.algo}</td>
           </tr>
           <tr>
             <td className='pics'> <img className='imgs' src='../../../../public/val.png'/>Криптовалюта:</td>
-            <td>{selectedMiner.id}</td>
+            <td>{currentCurrency?.name}</td>
           </tr>
           <tr>
             <td className='pics'> <img className='imgs' src='../../../../public/hash.png'/>Хешрейт:</td>
@@ -69,23 +84,23 @@ function MinerPage(): JSX.Element {
                   </option>
                 ))} */}
               {/* </select> */}
-              {selectedMiner.id}
+              {currentHashrate?.rate}
             </td>
           </tr>
           <tr>
           
             <td className='pics'> <img className='imgs' src='../../../../public/exp.png'/>Потребление:</td>
-            <td>{selectedMiner.id} вт</td>
+            <td>{selectedMiner.expense} вт</td>
           </tr>
         </tbody>
       </table>
 
       <h3 className="description-title">Описание</h3>
-      <p className="description">{selectedMiner.id}</p>
+      <p className="description">{selectedMiner.description}</p>
 
       <div className="price-container">
         <p className="price">
-          {selectedMiner.id} руб
+          {selectedMiner.price} руб
           <button className="buy-button" style={{ marginLeft: '10px' }}>
             Купить
           </button>

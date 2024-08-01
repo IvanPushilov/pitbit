@@ -12,6 +12,7 @@ function MinersPage(): JSX.Element {
   const brands = useSelector((store: RootState) => store.brands.brands);
 console.log('miners', miners, 'brands',brands);
 
+
   return (
     <div className="minerspage">
       {/* <div>{user?.role === 'admin' ? <div><h2>Добавить майнер</h2>  <FormAddMiner/></div> : null}</div> */}

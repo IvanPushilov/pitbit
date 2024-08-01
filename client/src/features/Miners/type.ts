@@ -1,14 +1,21 @@
-import { User } from '../Auth/type';
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+import type { User } from '../Auth/type';
+
 export type Miner = {
   id: number;
   description: string;
   price: number;
   expense: number;
-  model_id: number;
+  modell_id: number;
+  brand_id: number;
+  subbrand_id: number;
   img: string;
   algorithm_id: number;
   currency_id: number;
-  hashrate_id: number
+  hashrate_id: number;
+  algorithms_id: number;
   };
 
 export type Brand = {
@@ -43,17 +50,17 @@ export type Algorithm = {
 };
 
 export type Comment = {
-  id:number
-  user_id:number
+  id:number;
+  user_id:number;
   title: string;
-  miner_id: number
-  date:string
-  User:User
+  miner_id: number;
+  date:string;
+  User:User;
 };
 
 export type CommentFetch = {
   title: string;
-  miner_id: number
+  miner_id: number;
 };
 
 
@@ -81,16 +88,19 @@ export type CurrencyState = {
 
 export type HashrateState = {
   hashrates: Hashrate[];
+  hashrate: Hashrate | null;
   message: string | undefined;
 };
 
 export type ModellState = {
   modells: Modell[];
+  modell: Modell | null;
   message: string | undefined;
 };
 
 export type SubBrandState = {
   subbrands: SubBrand[];
+  subbrand: SubBrand | null;
   message: string | undefined;
 };
 
